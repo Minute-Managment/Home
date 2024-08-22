@@ -1,4 +1,4 @@
-alert('The website is under development, So you may face some bugs');
+// alert('The website is under development, So you may face some bugs');
 let timerInterval;
 let isTimerRunning = true;
 const audio = new Audio('Source/alarm.wav');
