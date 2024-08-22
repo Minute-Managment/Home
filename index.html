@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Source/Logo.ico" type="image/x-icon">
+    <title>Team1</title>
+</head>
+<body>
+    <nav>
+        <h1 onclick="showSection('home')">Minute Manager</h1>
+        <div class="links">
+            <a onclick="showSection('home')">Home</a>
+            <a onclick="showSection('timer')">Timer</a>
+            <a onclick="showSection('calendar')">Calendar</a>
+            <a onclick="showSection('task')">Task</a>
+            <a onclick="showSection('feedback')">Feedback</a>
+        </div>
+    </nav>
+    
+    <main class="content" id="home-content">
+        <h1>Welcome</h1>
+        <div class="home">
+            <button onclick="showSection('timer')"><img src="Source/Timer.png"><span>Timer</span></button>
+            <button onclick="showSection('calendar')"><img src="Source/Calendar.png"><span>Calendar</span></button>
+            <button onclick="showSection('task')"><img src="Source/Task.png"><span>Task</span></button>
+        </div>
+    </main>
+    
+    <main class="content" id="timer-content">
+        <h1>Timer</h1>
+        <div class="timer" id="timer">
+            Work
+        <input class="mtimer" type="text" id="work-mtimer" oninput="validateInput()"><span>:</span>
+        <input class="stimer" type="text" id="work-stimer" oninput="validateInput()">
+        </div>
+        <span id="error-message" style="color: red; opacity: 0; transition: opacity 0.5s ease;"></span>
+        <div class="timer-buttons">
+            <button id="start-btn" onclick="startTimer()">Start</button>
+            <button id="stop-btn" onclick="stopTimer()" style="display: none;">Stop</button>
+        </div>
+        <button id="TP-switch">Pomodoro Mode</button>
+    </main>
+    
+
+    <main class="content" id="calendar-content">
+        <h1>Calendar</h1>
+        <div class="calender">
+            <div class="calendar">
+                <div class="calendar-header">
+                    <h2 id="monthYear"></h2>
+                </div>
+                <div class="calendar-body">
+                    <div class="calendar-weekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="calendar-days" id="calendarDays"></div>
+                </div>
+            </div>
+        <div class="dates">
+            <button class="add-date-btn" onclick="adddate(0)">+</button>
+            <ul id="date-list">
+            </ul>
+        </div>
+    </div>
+    </main>
+
+    <main class="content" id="task-content">
+        <h1>Task Manager</h1>
+        <div class="tasksection">
+            <div class="tasklist">
+            <button id="add-task-btn" onclick="addTaskPrompt()">+</button>
+            <ul id="task-list">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+            </div>
+            <div id="pomodoro-timer">
+                <h2>Pomodoro Timer</h2>
+                <input type="text" id="task-name" placeholder="Task name" readonly>
+                <div id="timer-display">25:00</div>
+                <button id="start-timer-btn" onclick="startPomodoro()">Start Timer</button>
+                <button id="stop-timer-btn" onclick="stopPomodoro()" style="display: none;">Stop Timer</button>
+                <span id="pomodoro-message"><span>
+            </div>
+        </div>
+    </main>
+    <main class="content" id="feedback-content">
+        <h1>Feedback</h1>
+        <button><a href="https://www.facebook.com/">Facebook</a></button>
+        <button><a href="https://www.instagram.com/">Instagram</a></button>
+        <button><a href="https://mail.google.com/mail/u/0">Gmail</a></button>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="ai.js"></script>
+    <script src="timer.js"></script>
+    <script src="calendar.js"></script>
+    <script src="task.js"></script>
+    <script async data-id="3852745197" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+</body>
+</html>

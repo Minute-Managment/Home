@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Care - We're Here for You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #eef2f3;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-section {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #73c8a9 0%, #373b44 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            margin-bottom: 50px; /* Ensures enough space for the chatbot button */
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .chatbot-button {
+            position: relative;
+            bottom: 50px;
+            background-color: #373b44;
+            color: white;
+            border: none;
+            padding: 20px 30px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .chatbot-button:hover {
+            background-color: #73c8a9;
+            transform: scale(1.1);
+        }
+
+        .chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 100px; /* Placed higher to avoid overlapping content */
+            right: 20px;
+            width: 400px;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background-color: #373b44;
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .chatbot-body {
+            padding: 15px;
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #eef2f3;
+        }
+
+        .chatbot-footer {
+            padding: 10px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .chatbot-send {
+            background-color: #373b44;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .chatbot-send:hover {
+            background-color: #73c8a9;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Your Mental Health Matters</h1>
+            <p>We're here to listen. Connect with our mental health chatbot for support.</p>
+        </div>
+        <button id="chatbotButton" class="chatbot-button">
+            💬 Talk to Us
+        </button>
+    </div>
+
+    <div id="chatbotContainer" class="chatbot-container">
+        <div class="chatbot-header">
+            We're Here for You
+        </div>
+        <div class="chatbot-body" id="chatbotBody">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type a message..." />
+            <button id="chatbotSend" class="chatbot-send">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('chatbotButton').addEventListener('click', function() {
+            var chatbotContainer = document.getElementById('chatbotContainer');
+            chatbotContainer.style.display = 'flex'; // Changed to 'flex' for proper layout
+            document.getElementById('chatbotButton').style.display = 'none';
+        });
+
+        document.getElementById('chatbotSend').addEventListener('click', async function() {
+            var inputField = document.getElementById('chatbotInput');
+            var message = inputField.value;
+            if (message.trim() !== '') {
+                var chatbotBody = document.getElementById('chatbotBody');
+
+                // Display user's message
+                var userMessage = document.createElement('div');
+                userMessage.textContent = message;
+                userMessage.style.marginBottom = '10px';
+                userMessage.style.backgroundColor = '#73c8a9';
+                userMessage.style.color = 'white';
+                userMessage.style.padding = '10px';
+                userMessage.style.borderRadius = '10px';
+                userMessage.style.alignSelf = 'flex-end';
+                chatbotBody.appendChild(userMessage);
+
+                inputField.value = '';
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+                // Send the user's message to the backend server
+                try {
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: message }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+                    const botMessage = data.reply;
+
+                    // Display bot's response
+                    var botResponse = document.createElement('div');
+                    botResponse.textContent = botMessage;
+                    botResponse.style.marginBottom = '10px';
+                    botResponse.style.backgroundColor = '#f1f1f1';
+                    botResponse.style.color = '#333';
+                    botResponse.style.padding = '10px';
+                    botResponse.style.borderRadius = '10px';
+                    botResponse.style.alignSelf = 'flex-start';
+                    chatbotBody.appendChild(botResponse);
+
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                } catch (error) {
+                    console.error('Error:', error);
+                    var errorMessage = document.createElement('div');
+                    errorMessage.textContent = "Sorry, something went wrong. Please try again later.";
+                    errorMessage.style.marginBottom = '10px';
+                    errorMessage.style.backgroundColor = '#f1f1f1';
+                    errorMessage.style.color = '#333';
+                    errorMessage.style.padding = '10px';
+                    errorMessage.style.borderRadius = '10px';
+                    errorMessage.style.alignSelf = 'flex-start';
+                    chatbotBody.appendChild(errorMessage);
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
