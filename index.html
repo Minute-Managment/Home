@@ -48,7 +48,9 @@
         <div class="calender">
             <div class="calendar">
                 <div class="calendar-header">
+                    <button id="prevMonth">&lt;</button>
                     <h2 id="monthYear"></h2>
+                    <button id="nextMonth">&gt;</button>
                 </div>
                 <div class="calendar-body">
                     <div class="calendar-weekdays">
@@ -63,13 +65,15 @@
                     <div class="calendar-days" id="calendarDays"></div>
                 </div>
             </div>
-        <div class="dates">
-            <button class="add-date-btn" onclick="adddate(0)">+</button>
-            <ul id="date-list">
-            </ul>
+            <div class="dates">
+                <input type="text" id="eventName" placeholder="Event Name">
+                <input type="date" id="eventDate">
+                <button class="add-date-btn" onclick="adddate()">+</button>
+                <ul id="date-list"></ul>
+            </div>
         </div>
-    </div>
     </main>
+    
 
     <main class="content" id="task-content">
         <h1>Task Manager</h1>
