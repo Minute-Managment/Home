@@ -5,6 +5,7 @@ const nextMonthBtn = document.getElementById('nextMonth');
 const dateList = document.getElementById('date-list');
 const eventNameInput = document.getElementById('eventName');
 const eventDateInput = document.getElementById('eventDate');
+const selectDate = document.getElementById('selectedDate');
 
 let currentDate = new Date();
 let selectedDate = null;
@@ -91,8 +92,10 @@ function adddate() {
 
         li.innerHTML = `
             <input type="checkbox" class="task-checkbox">
-            <span class="task-name">${taskName}</span> ${selectDay}
+            <span class="task-name">${taskName}</span> 
             <a href="https://calendar.google.com/calendar/u/0/r/eventedit?dates=${taskdate.replace(/-/g, '') + startTime}/${taskdate.replace(/-/g, '') + endTime}&ctz=GMT&text=${taskName}" target="_blank">Google Calendar</a>
+            ${selectDay}
+            <button class="delete-btn" onclick="deleteTask(this.parentElement)">-</button>
         `;
 
         dateList.insertBefore(li, dateList.firstChild); // Add new date to the top of the list
@@ -110,6 +113,8 @@ function adddate() {
 // Function to filter and show/hide dates based on the selected date
 function filterDatesBySelectedDate(selectedDate) {
     const allDates = dateList.querySelectorAll('li');
+    eventDateInput.value = selectedDate;
+    selectDate.value = selectedDate;
 
     allDates.forEach(li => {
         if (li.getAttribute('data-date') === selectedDate) {
@@ -137,6 +142,7 @@ nextMonthBtn.addEventListener('click', function() {
 
 // Set default event date to today
 eventDateInput.value = currentDate.toISOString().split('T')[0];
+selectDate.value = currentDate.toISOString().split('T')[0];
 
 // Initial population of the calendar
 populateCalendar(currentDate);

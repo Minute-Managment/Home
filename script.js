@@ -1,6 +1,4 @@
 // alert('The website is under development, So you may face some bugs');
-let timerInterval;
-let isTimerRunning = true;
 const audio = new Audio('Source/alarm.wav');
 showSection('home');
 
@@ -45,5 +43,7 @@ document.addEventListener('mousemove',
     let moveY = event.clientY / 50;
     // console.log(`${moveX}, ${moveY}`)
     
-    document.body.style.backgroundPosition = `${moveX}px ${moveY}px`
+    setTimeout(() => {
+        document.body.style.backgroundPosition = `${moveX}px ${moveY}px`
+    }, 100)
 })

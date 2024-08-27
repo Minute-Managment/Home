@@ -39,9 +39,7 @@
             <button id="start-btn" onclick="startTimer()">Start</button>
             <button id="stop-btn" onclick="stopTimer()" style="display: none;">Stop</button>
         </div>
-        <!-- <button id="TP-switch">Pomodoro Mode</button> -->
     </main>
-    
 
     <main class="content" id="calendar-content">
         <h1>Calendar</h1>
@@ -69,7 +67,9 @@
                 <input type="text" id="eventName" placeholder="Event Name">
                 <input type="date" id="eventDate">
                 <button class="add-date-btn" onclick="adddate()">+</button>
-                <ul id="date-list"></ul>
+                <ul id="date-list">
+                    <input type="date" id="selectedDate" readonly>
+                </ul>
             </div>
         </div>
     </main>
@@ -87,6 +87,7 @@
             <div id="pomodoro-timer">
                 <h2>Pomodoro Timer</h2>
                 <input type="text" id="task-name" placeholder="Task name" readonly>
+                <button id="task-name-reset" onclick="resetTaskName()">Cancel</button>
                 <div id="timer-display">25:00</div>
                 <button id="start-timer-btn" onclick="startPomodoro()">Start Timer</button>
                 <button id="stop-timer-btn" onclick="stopPomodoro()" style="display: none;">Stop Timer</button>

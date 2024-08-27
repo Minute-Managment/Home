@@ -1,3 +1,6 @@
+let isTimerRunning = true;
+let timerInterval;
+
 function validateInput() {
     const minput = document.getElementById('work-mtimer');
     const sinput = document.getElementById('work-stimer');
@@ -17,7 +20,7 @@ function validateInput() {
     }
 
     if (minput.value > maxMinutes) {
-        errorMessage.textContent = `The maximum allowed time is ${maxMinutes} minutes.`;
+        errorMessage.textContent = "The maximum allowed time is " + maxMinutes + " minutes.";
         minput.value = maxMinutes;
         errorMessage.style.opacity = 1;
     } else {
@@ -25,7 +28,7 @@ function validateInput() {
     }
 
     if (sinput.value > maxSeconds) {
-        errorMessage.textContent = `The maximum allowed time is ${maxSeconds} seconds.`;
+        errorMessage.textContent = "The maximum allowed time is 59 seconds.";
         sinput.value = maxSeconds;
         errorMessage.style.opacity = 1;
     } else {

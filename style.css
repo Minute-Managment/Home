@@ -1,16 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    /* General Colors */
+    --color-bg-dark: #000;
+    --color-text-light: #fff;
+    --color-text-dark: #282828;
+
+    /* Background & Images */
+    --bg-image: url('Source/Background.jpg');
+
+    /* Primary and Secondary Colors */
+    --color-primary: #65536e55;
+    --color-secondary: #66666666;
+
+    /* Interactive States */
+    --color-hover: #8282827a;
+    --color-active: #28282866;
+
+    /* Borders */
+    --color-border-light: #ccc;
+    --color-border-dark: #000;
+
+    /* Accent Colors */
+    --color-accent-light: #949494;
+    --color-accent-dark: #88888888;
+
+    /* Buttons */
+    --color-btn-bg: #5e5e5e66;
+    --color-btn-hover: #5e5e5ebb;
+    --color-btn-active: #36363666;
+
+    /* Checkbox */
+    --color-checkbox-bg: #f0f0f0;
+    --color-checkbox-border: #ccc;
+    --color-checkbox-checked: #000;
+
+    /* Tasks */
+    --color-task-bg: #65536e55;
+    --color-task-hover: #8282827a;
+    --color-task-active: #28282866;
+
+    /* Calendar */
+    --color-calendar-day-hover: #bbb;
+    --color-calendar-day-active: #888;
+    --color-calendar-today: #949494;
+    --color-calendar-ddays: #888;
+    --color-calendar-sdays: #bababa;
+
+    /* Inputs */
+    --color-input-bg: #00000015;
+    --color-input-hover: #ccc;
+    --color-input-focus: #999;
+
+    /* Delete Button */
+    --color-delete-btn: #9b00008c;
+    --color-delete-btn-hover: #9b0000bb;
+    --color-delete-btn-active: #9b000066;
+
+    /* Transparents */
+    --transparent: transparent;
+}
+
 
 body {
-    background-color: #000;
-    background-image: linear-gradient(#270636, #000000);
-    background-image: url('Source/Background.jpg');
+    background-color: var(--color-bg-dark);
+    background-image: var(--bg-image);
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 0;
+    padding: 0; margin: 0;
     font-family: "MuseoModerno", sans-serif;
     color: #fff;
-    /* animation: moveBackground 30s ease infinite; */
-    transition: 0.3s;
     overflow: hidden;
 }
 
@@ -64,19 +122,6 @@ body {
 .shakeo {
     animation: shakeo 0.5s ease-in-out;
 }
-.hover-effect {
-    background-color: lightblue;
-    padding: 20px;
-    width: 200px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.hover-effect:hover {
-    background-color: cornflowerblue;
-    transform: scale(1.1);
-}
-
 
 nav {
     position: absolute;
@@ -112,8 +157,8 @@ nav .links {
 
 nav .links a {
     text-decoration: none;
-    color: #fff;
-    transition: color 0.5s;
+    color: var(--color-text-light);
+    transition: color 0.3s;
     cursor: pointer;
 }
 
@@ -121,7 +166,7 @@ nav .links a:hover {
     color: #aaa;
 }
 nav .links a:active {
-    color: #28282866;
+    color: var(--color-text-dark);
 }
 
 main {
@@ -141,7 +186,7 @@ main {
     left: 10%;
     padding: 1.5rem;
     border-radius: 45px;
-    background-color: #65536e55;
+    background-color: var(--color-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,7 +203,7 @@ main button {
     padding: 1rem 2rem;
     border: none;
     border-radius: 2rem;
-    background-color: #5e5e5e66;
+    background-color: var(--color-btn-bg);
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
@@ -168,18 +213,17 @@ main button {
 }
 
 main button:hover {
-    background-color: #5e5e5ebb;
+    background-color: var(--color-btn-hover);
     transform: scale(1.1);
 }
 main button:active {
     transition: 0.2s;
-    background-color: #36363666;
+    background-color: var(--color-btn-active);
     transform: scale(0.9);
 }
 
 /* _____________________________ */
 main .home {
-    /* background-color: #000; */
     flex-grow: 1;
     width: 80%;
     display: flex;
@@ -221,24 +265,35 @@ main .timer {
     padding: 1.5rem;
     width: 15rem;
     height: 15rem;
-    background-color: #66666666;
+    background-color: var(--color-secondary);
     font-size: 7rem;
     border: 0;
     display: flex;
     align-items: center;
     transition: 1s;
     position: relative;
-    box-shadow: inset 0 0 0 0rem #99999933;
+    box-shadow: inset 0 0 0 0rem var(Z);
 }
 main .timer input{
     width: 50%;
     height: 7rem;
-    background-color: #00000015;
+    background-color: var(--color-input-bg);
     border: 0;
     border-radius: 25px;
     font-size: 6rem;
-    color: #fff;
+    color: var(--color-text-light);
     outline: none;
+}
+
+main .Ptimer {
+    
+}
+main .Wtimer, main .Btimer {
+    width: 20rem; height: 5rem;
+    margin: 1rem;
+}
+main .Ptimer .Ttimer {
+    font-size: 1.2rem;
 }
 
 main .timer-buttons button {
@@ -259,27 +314,29 @@ main #TP-switch {
 }
 .calendar {
     width: 330px;
-    background-color: #66666666;
+    background-color: var(--color-secondary);
     border-radius: 10px;
     overflow: hidden;
 }
 
 .calendar-header {
-    background-color: #88888888;
-    color: #fff;
+    background-color: var(--color-accent-dark);
+    color: var(--color-text-light);
     padding: 10px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .calendar-header h2 {
-    margin: 0 0.5rem;
     display: inline;
 }
 .calendar-header button {
     display: inline;
     margin: 0;
     padding: 1rem;
-    background-color: #28282866;
+    background-color: var(--color-task-active);
 }
 
 .calendar-body {
@@ -311,28 +368,28 @@ main #TP-switch {
 
 .calendar-day:hover {
     background-color: #bbb;
-    color: #fff;
+    color: var(--color-text-light);
     transform: scale(1.05);
 }
 .calendar-day:active {
-    background-color: #888;
-    color: #fff;
+    background-color: var(--color-calendar-day-active);
+    color: var(--color-text-light);
     transform: scale(0.95);
 }
 
 .today {
-    background-color: #949494;
-    color: white;
+    background-color: var(--color-calendar-today);
+    color: var(--color-text-light);
     transform: scale(1.075);
 }
 .ddays {
-    box-shadow: inset 0 0 0 3px #888;
-    color: white;
+    box-shadow: inset 0 0 0 3px var(--color-calendar-ddays);
+    color: var(--color-text-light);
     transform: scale(1.075);
 }
 .sdays {
-    background-color: #bababa;
-    color: #000;
+    background-color: var(--color-calendar-sdays);
+    color: var(--color-text-dark);
     transform: scale(1.1);
 }
 
@@ -345,10 +402,10 @@ main #TP-switch {
 #eventName {
     padding: 0.75rem 1.5rem;
     font-size: 1.5rem;
-    background-color: #00000015;
+    background-color: var(--color-input-bg);
     border: none;
     border-radius: 25px;
-    color: #fff;
+    color: var(--color-text-light);
     transition: 0.3s;
     outline: none;
 }
@@ -356,16 +413,19 @@ main #TP-switch {
     transform: scale(1.05);
 }
 
-#eventDate{
+input[type=date]{
     padding: 0.2rem;
-    background-color: #00000015;
     border: none;
-    color: #fff;
+    color: var(--color-text-light);
     font-size: 1.5rem;
     transition: 0.5s;
     outline: none;
-    padding: 0.75rem 1.5rem;
     border-radius: 25px;
+    background-color: var(--transparent);
+}
+#eventDate {
+    background-color: var(--color-input-bg);
+    padding: 0.75rem 1.5rem;
 }
 #eventDate:hover {
     transform: scale(1.05);
@@ -383,6 +443,7 @@ main #TP-switch {
     border-radius: 100px;
     font-size: 3rem;
     width: 5rem; height: 5rem;
+    z-index: 99;
 }
 
 #date-list {
@@ -394,6 +455,7 @@ main #TP-switch {
 #date-list li {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     border-radius: 10px;
@@ -407,13 +469,26 @@ main #TP-switch {
 #date-list li:active{
     background-color:#28282866;
 }
+#date-list li .delete-btn {
+    padding: 0.2rem;
+    font-size: 1rem;
+    background-color: #9b00008c;
+    width: 1.5rem; height: 1.5rem;
+    transition: 0.3s;
+}
+#date-list li .delete-btn:hover {
+    background-color: #9b0000bb;
+}
+#date-list li .delete-btn:active {
+    transition: 0.2s;
+    background-color: #9b000066;
+}
+
 .dayselect{
     padding: 0.2rem;
     background-color: #00000000;
-    position: absolute;
-    right: 20px;
     border: none;
-    color: #fff;
+    color: var(--color-text-light);
     font-size: 1.5rem;
     transition: 0.5s;
 }
@@ -461,6 +536,7 @@ main #TP-switch {
     cursor: pointer;
     margin-bottom: 1rem;
     width: 5rem; height: 5rem;
+    z-index: 99;
 }
 
 #task-list {
@@ -472,11 +548,11 @@ main #TP-switch {
 }
 #task-list .taskprompt {
     position: fixed;
-    left: 30vw; top: 32.5vh;
+    left: 22vw; top: 27.5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40vw; height: 35vh;
+    width: 40vw; height: 45vh;
     background-color: #4646467a;
     border-radius: 35px;
     backdrop-filter: blur(10px);
@@ -484,17 +560,22 @@ main #TP-switch {
     transition: 0.3s;
 }
 #task-list .taskprompt input {
-    width: 80%; height: 30%;
+    width: 80%;
     background-color: #00000015;
     border: none;
     border-radius: 25px;
-    color: #fff;
+    color: var(--color-text-light);
     transition: 0.3s;
     outline: none;
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
-#task-list .taskprompt button {
-    margin: 0.5rem 0;
-    transition: 0.3s;
+#task-list .taskprompt .delete-btn {
+    padding: 1rem;
+    right: 15px; top: 10px;
+    width: 3.5rem; height: 3.5rem;
+    backdrop-filter: blur(5px);
 }
 #task-list .task {
     display: flex;
@@ -514,18 +595,19 @@ main #TP-switch {
 #task-list .task{
     background-color:#28282866;
 }
-.task .delete-btn {
+#task-list .delete-btn {
     padding: 0.2rem;
     font-size: 1rem;
     position: absolute;
     right: 5px;
     background-color: #9b00008c;
+    width: 1.5rem; height: 1.5rem;
     transition: 0.3s;
 }
-.task .delete-btn:hover {
+#task-list .delete-btn:hover {
     background-color: #9b0000bb;
 }
-.task .delete-btn:active {
+#task-list .delete-btn:active {
     transition: 0.2s;
     background-color: #9b000066;
 }
@@ -540,7 +622,6 @@ input[type="checkbox"] {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    position: relative;
     outline: none;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -561,11 +642,15 @@ input[type="checkbox"]:checked {
     background-color: #00000000;
     border: 0;
     font-size: 1rem;
-    width: 100%;
+    width: 60%;
     margin-bottom: 1rem;
     cursor: auto;
     outline: none;
-    color: #fff;
+    color: var(--color-text-light);
+    display: inline;
+}
+#pomodoro-timer .task-name-reset {
+    display: inline;
 }
 
 #pomodoro-timer button {
@@ -573,7 +658,7 @@ input[type="checkbox"]:checked {
     border: none;
     border-radius: 5px;
     background-color: #4646467a;
-    color: white;
+    color:var(--color-text-light);
     font-size: 1rem;
     cursor: pointer;
     margin: 0 0.5rem;
@@ -599,4 +684,13 @@ input[type="checkbox"]:checked {
 #feedback-content button a {
     color: #eee;
     font-size: 1.75rem;
+}
+
+/* _____________________________ */
+.AI-btn {
+    position: fixed;
+    right: 10px; bottom: 10px;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 100px;
 }
